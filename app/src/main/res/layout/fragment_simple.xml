@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/material_on_surface_stroke"
+    android:background="@color/cardview_shadow_start_color"
     android:orientation="horizontal"
-    tools:context=".SimpleFragment">
+    tools:context=".SimpleFragment"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -23,7 +25,8 @@
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:backgroundTint="@color/black">
 
         <RadioButton
             android:id="@+id/radio_button_yes"

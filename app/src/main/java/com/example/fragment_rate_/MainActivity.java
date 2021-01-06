@@ -1,36 +1,57 @@
 package com.example.fragment_rate_;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
-    boolean isFragmentDisplayed;
+
     TextView textView;
+    Button submit;
+    int num_stars;
+    String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        submit = findViewById(R.id.submit);
         button = findViewById(R.id.button);
+        textView = findViewById(R.id.text);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isFragmentDisplayed) {
-                    displayFragment();
-                    displayRating();
-                } else {
-                    closeFragment();
-                }
+                displayFragment();
+                displayRating();
+                textView.setText("");
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeFragment();
+                closeRating();
+                final RatingBar ratingBar = findViewById(R.id.rating);
+
+                String rating = "Thank you for your feedback" + "\n" + "Rating is :" + ratingBar.getRating();
+                textView.setText(rating);
+                // Toast.makeText(MainActivity.this, rating, Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -42,28 +63,18 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction();
         fragmentTransaction.add(R.id.fragment,
                 simpleFragment).addToBackStack(null).commit();
-        // Update the Button text.
-        button.setText(R.string.close);
-        // Set boolean flag to indicate fragment is open.
-        isFragmentDisplayed = true;
     }
 
     public void closeFragment() {
-        // Get the FragmentManager.
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        // Check to see if the fragment is already showing.
-        SimpleFragment simpleFragment = (SimpleFragment) fragmentManager
-                .findFragmentById(R.id.fragment);
+
+        SimpleFragment simpleFragment = (SimpleFragment) fragmentManager.findFragmentById(R.id.fragment);
         if (simpleFragment != null) {
-            // Create and commit the transaction to remove the fragment.
-            FragmentTransaction fragmentTransaction =
-                    fragmentManager.beginTransaction();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(simpleFragment).commit();
         }
-        // Update the Button text.
-        button.setText(R.string.open);
-        // Set boolean flag to indicate fragment is closed.
-        isFragmentDisplayed = false;
+
     }
 
     public void displayRating() {
@@ -72,6 +83,19 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.ratingbar, rateFragment).addToBackStack(null).commit();
+
     }
+
+    public void closeRating() {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        RateFragment rateFragment = (RateFragment) fragmentManager.findFragmentById(R.id.ratingbar);
+        if (rateFragment != null) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(rateFragment).commit();
+        }
+
+    }
+
 
 }
