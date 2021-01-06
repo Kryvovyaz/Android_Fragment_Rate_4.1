@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Fragment_Rate_</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="yes_message"> You like it</string>
+    <string name="no_message">You don\'\t like it</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- Text for the exception message in FragmentCommunicate. -->
+    <string name="exception_message">must implement OnFragmentInteractionListener</string>
+
+    <string name="like_this_course">Like self studying?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
