@@ -1,30 +1,27 @@
 package com.example.fragment_rate_;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SimpleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SimpleFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public static String EXTRA_REPLY;
     public static final int TEXT_REQUEST = 1;
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private static final int YES = 0;
@@ -33,18 +30,10 @@ public class SimpleFragment extends Fragment {
     private TextView textView;
 
     public SimpleFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SimpleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static SimpleFragment newInstance(String param1, String param2) {
         SimpleFragment fragment = new SimpleFragment();
         Bundle args = new Bundle();
@@ -60,8 +49,50 @@ public class SimpleFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
+            Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onCreateView");
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onAttach");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onStop");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onDestroyView");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onDestroy");
     }
 
     @Override
@@ -77,19 +108,18 @@ public class SimpleFragment extends Fragment {
                 View radioButton = radioGroup.findViewById(checkedId);
                 int index = radioGroup.indexOfChild(radioButton);
 
-                Intent intent = new Intent();
 
                 TextView textView =
                         rootView.findViewById(R.id.fragment_header);
                 switch (index) {
                     case YES: // User chose "Yes."
-                        intent.putExtra("Choice", "You like it");
+
                         textView.setText(R.string.yes_message);
 
                         break;
                     case NO: // User chose "No."
                         textView.setText(R.string.no_message);
-                        intent.putExtra("Choice", "You don't like it");
+
                         break;
                     default: // No choice made.
                         // Do nothing.
@@ -98,7 +128,7 @@ public class SimpleFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
+        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onCreateView");
         return rootView;
     }
 
