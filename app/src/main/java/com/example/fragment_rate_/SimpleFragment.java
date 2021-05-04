@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 public class SimpleFragment extends Fragment {
 
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public static String EXTRA_REPLY;
@@ -32,7 +31,6 @@ public class SimpleFragment extends Fragment {
     public SimpleFragment() {
 
     }
-
 
     public static SimpleFragment newInstance(String param1, String param2) {
         SimpleFragment fragment = new SimpleFragment();
@@ -54,72 +52,24 @@ public class SimpleFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onAttach");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onStop");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onDestroyView");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(Constants.LOG_TAG, SimpleFragment.class.getName() + " is onDestroy");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_simple, container, false);
-
         radioGroup = rootView.findViewById(R.id.radio_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 View radioButton = radioGroup.findViewById(checkedId);
                 int index = radioGroup.indexOfChild(radioButton);
-
-
                 TextView textView =
                         rootView.findViewById(R.id.fragment_header);
                 switch (index) {
                     case YES: // User chose "Yes."
-
                         textView.setText(R.string.yes_message);
-
                         break;
                     case NO: // User chose "No."
                         textView.setText(R.string.no_message);
-
                         break;
                     default: // No choice made.
                         // Do nothing.

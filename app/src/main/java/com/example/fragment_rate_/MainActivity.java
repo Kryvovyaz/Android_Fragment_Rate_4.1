@@ -18,10 +18,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
-
     TextView textView;
     Button submit;
-    int num_stars;
     String s;
 
     @Override
@@ -50,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
                 String rating = "Thank you for your feedback" + "\n" + "Rating is :" + ratingBar.getRating();
                 textView.setText(rating);
-                // Toast.makeText(MainActivity.this, rating, Toast.LENGTH_LONG).show();
-
             }
         });
     }
@@ -68,13 +64,11 @@ public class MainActivity extends AppCompatActivity {
     public void closeFragment() {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         SimpleFragment simpleFragment = (SimpleFragment) fragmentManager.findFragmentById(R.id.fragment);
         if (simpleFragment != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(simpleFragment).commit();
         }
-
     }
 
     public void displayRating() {
@@ -83,19 +77,14 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.ratingbar, rateFragment).addToBackStack(null).commit();
-
     }
 
     public void closeRating() {
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         RateFragment rateFragment = (RateFragment) fragmentManager.findFragmentById(R.id.ratingbar);
         if (rateFragment != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(rateFragment).commit();
         }
-
     }
-
-
 }
